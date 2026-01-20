@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ремонт квартир под ключ с гарантией 5 лет. Фиксированная цена, прозрачный договор, оплата по этапам.">
+    <title>Ремонт квартир под ключ в Краснодаре | Гарантия 5 лет</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a5f',
+                        'primary-light': '#2d5a8a',
+                        accent: '#c9a86c',
+                        'accent-light': '#d4ba8a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+
+        html { scroll-behavior: smooth; }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8a 100%);
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #c9a86c 0%, #d4ba8a 100%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #c9a86c 0%, #d4ba8a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #c9a86c 0%, #d4ba8a 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(201, 168, 108, 0.5);
+        }
+
+        .whatsapp-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+    <!-- Yandex.Metrika counter -->
+    <!--
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(XXXXXXXX, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/XXXXXXXX" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    -->
+</head>
+
+<body class="font-sans text-gray-800 antialiased" x-data="{
+    mobileMenu: false,
+    modal: false,
+    quizStep: 1,
+    quizData: { type: '', area: '', budget: '', phone: '' },
+    submitted: false
+}">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i data-lucide="home" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="font-display font-bold text-xl text-primary">РемонтПро</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#benefits" class="text-gray-600 hover:text-primary transition-colors">Преимущества</a>
+                    <a href="#portfolio" class="text-gray-600 hover:text-primary transition-colors">Портфолио</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-primary transition-colors">Отзывы</a>
+                    <a href="#contacts" class="text-gray-600 hover:text-primary transition-colors">Контакты</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="tel:+79991234567" class="flex items-center text-primary font-semibold">
+                        <i data-lucide="phone" class="w-4 h-4 mr-2"></i>
+                        +7 (999) 123-45-67
+                    </a>
+                    <button @click="modal = true" class="btn-primary px-6 py-2.5 rounded-full text-white font-semibold">
+                        Рассчитать стоимость
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button @click="mobileMenu = !mobileMenu" class="md:hidden p-2">
+                    <i data-lucide="menu" class="w-6 h-6 text-gray-700" x-show="!mobileMenu"></i>
+                    <i data-lucide="x" class="w-6 h-6 text-gray-700" x-show="mobileMenu" x-cloak></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenu" x-cloak x-transition class="md:hidden bg-white border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#benefits" @click="mobileMenu = false" class="block py-2 text-gray-600">Преимущества</a>
+                <a href="#portfolio" @click="mobileMenu = false" class="block py-2 text-gray-600">Портфолио</a>
+                <a href="#reviews" @click="mobileMenu = false" class="block py-2 text-gray-600">Отзывы</a>
+                <a href="#contacts" @click="mobileMenu = false" class="block py-2 text-gray-600">Контакты</a>
+                <a href="tel:+79991234567" class="block py-2 text-primary font-semibold">+7 (999) 123-45-67</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white fade-in">
+                    <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                        <i data-lucide="award" class="w-4 h-4 text-accent mr-2"></i>
+                        <span class="text-sm">Более 500 выполненных проектов</span>
+                    </div>
+
+                    <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        Ремонт квартир в&nbsp;Краснодаре
+                        <span class="text-gradient">под ключ</span>
+                    </h1>
+
+                    <p class="text-xl md:text-2xl text-white/80 mb-8 leading-relaxed">
+                        Фиксированная цена в договоре. Гарантия 5 лет.
+                        Сдаём объекты точно в срок или платим неустойку.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <button @click="modal = true" class="btn-primary px-8 py-4 rounded-full text-white font-semibold text-lg flex items-center justify-center">
+                            <i data-lucide="calculator" class="w-5 h-5 mr-2"></i>
+                            Рассчитать стоимость
+                        </button>
+                        <a href="#portfolio" class="px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold text-lg flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i data-lucide="images" class="w-5 h-5 mr-2"></i>
+                            Смотреть работы
+                        </a>
+                    </div>
+
+                    <!-- Trust indicators -->
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-accent">12</div>
+                            <div class="text-sm text-white/60">лет на рынке</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-accent">500+</div>
+                            <div class="text-sm text-white/60">проектов</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-accent">5 лет</div>
+                            <div class="text-sm text-white/60">гарантия</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Placeholder -->
+                <div class="hidden lg:block">
+                    <div class="relative">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 aspect-[4/3] flex items-center justify-center">
+                            <div class="text-center text-white/60">
+                                <i data-lucide="image" class="w-16 h-16 mx-auto mb-4 opacity-50"></i>
+                                <p>Фото интерьера<br>1200×900px</p>
+                            </div>
+                        </div>
+                        <!-- Floating card -->
+                        <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-2xl">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check-circle" class="w-6 h-6 text-green-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-gray-800">Проект сдан</div>
+                                    <div class="text-sm text-gray-500">ЖК Символ, 85 м²</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-20 md:py-28 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-primary mb-4">
+                    Почему выбирают нас
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    4 причины доверить нам ремонт вашей квартиры
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-white rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="clock" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl text-gray-800 mb-3">Точные сроки</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Фиксируем дату сдачи в договоре. За каждый день просрочки — неустойка 0.5% от суммы.
+                    </p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-white rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="file-text" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl text-gray-800 mb-3">Прозрачный договор</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Детальная смета на каждый этап. Никаких скрытых платежей и "сюрпризов" в процессе.
+                    </p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-white rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="credit-card" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl text-gray-800 mb-3">Оплата по этапам</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Платите только за выполненную работу. Поэтапная приёмка с фото и видео отчётами.
+                    </p>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="bg-white rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="shield-check" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl text-gray-800 mb-3">Гарантия 5 лет</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Официальная гарантия на все виды работ. Бесплатно устраняем любые недочёты.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 md:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-primary mb-4">
+                    Наши работы
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Более 500 выполненных проектов в Краснодаре и области
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Portfolio Item 1 -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-200 card-hover cursor-pointer">
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <div class="text-center">
+                            <i data-lucide="image" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+                            <p class="text-sm">Фото проекта</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="font-semibold text-lg">ЖК "Символ"</h3>
+                            <p class="text-white/80">85 м² • Современный стиль</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-200 card-hover cursor-pointer">
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <div class="text-center">
+                            <i data-lucide="image" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+                            <p class="text-sm">Фото проекта</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="font-semibold text-lg">ЖК "Пресня Сити"</h3>
+                            <p class="text-white/80">120 м² • Минимализм</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-200 card-hover cursor-pointer">
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <div class="text-center">
+                            <i data-lucide="image" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+                            <p class="text-sm">Фото проекта</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="font-semibold text-lg">ЖК "Садовые Кварталы"</h3>
+                            <p class="text-white/80">150 м² • Классика</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-200 card-hover cursor-pointer">
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <div class="text-center">
+                            <i data-lucide="image" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+                            <p class="text-sm">Фото проекта</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="font-semibold text-lg">Таунхаус в Барвихе</h3>
+                            <p class="text-white/80">280 м² • Неоклассика</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-200 card-hover cursor-pointer">
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <div class="text-center">
+                            <i data-lucide="image" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+                            <p class="text-sm">Фото проекта</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="font-semibold text-lg">ЖК "Краснодар-Сити"</h3>
+                            <p class="text-white/80">95 м² • Лофт</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 6 -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-200 card-hover cursor-pointer">
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <div class="text-center">
+                            <i data-lucide="image" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+                            <p class="text-sm">Фото проекта</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="font-semibold text-lg">ЖК "Донской Олимп"</h3>
+                            <p class="text-white/80">110 м² • Современный</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button @click="modal = true" class="btn-primary px-8 py-4 rounded-full text-white font-semibold text-lg inline-flex items-center">
+                    <i data-lucide="folder-open" class="w-5 h-5 mr-2"></i>
+                    Смотреть все проекты
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz CTA Section -->
+    <section class="py-20 md:py-28 hero-gradient">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12">
+                <div class="inline-flex items-center bg-accent/20 rounded-full px-4 py-2 mb-6">
+                    <i data-lucide="gift" class="w-4 h-4 text-accent mr-2"></i>
+                    <span class="text-accent text-sm font-medium">Бесплатно</span>
+                </div>
+
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">
+                    Узнайте стоимость вашего ремонта за 2 минуты
+                </h2>
+
+                <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+                    Ответьте на 4 простых вопроса и получите точный расчёт + дизайн-проект в подарок
+                </p>
+
+                <button @click="modal = true" class="btn-primary px-10 py-5 rounded-full text-white font-semibold text-xl inline-flex items-center">
+                    <i data-lucide="calculator" class="w-6 h-6 mr-3"></i>
+                    Рассчитать стоимость
+                </button>
+
+                <p class="text-white/60 text-sm mt-6">
+                    Более 2000 человек уже получили расчёт
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 md:py-28 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-primary mb-4">
+                    Отзывы клиентов
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Что говорят о нас те, кто уже сделал ремонт
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        "Делали ремонт в новостройке. Ребята сработали отлично — уложились в срок и бюджет.
+                        Особенно понравилось, что всё прозрачно: каждый этап согласовывали, присылали фото."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-primary font-semibold">АК</span>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-800">Алексей К.</div>
+                            <div class="text-sm text-gray-500">ЖК "Символ", 85 м²</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        "Второй раз обращаюсь в эту компанию. Первый раз делали студию, теперь трёшку.
+                        Качество на высоте, всё по договору. Рекомендую!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-primary font-semibold">МС</span>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-800">Мария С.</div>
+                            <div class="text-sm text-gray-500">ЖК "Пресня Сити", 120 м²</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        "Долго выбирали подрядчика, в итоге не прогадали. Ремонт под ключ за 3 месяца,
+                        никаких нервов. Гарантия 5 лет — это очень круто, таких условий нигде не видел."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-primary font-semibold">ДВ</span>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-800">Дмитрий В.</div>
+                            <div class="text-sm text-gray-500">Таунхаус, 280 м²</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section id="contacts" class="py-20 md:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-primary mb-4">
+                        Свяжитесь с нами
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Ответим на вопросы и рассчитаем стоимость вашего проекта
+                    </p>
+
+                    <div class="space-y-6">
+                        <a href="tel:+79991234567" class="flex items-center group">
+                            <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mr-4 group-hover:bg-primary/20 transition-colors">
+                                <i data-lucide="phone" class="w-6 h-6 text-primary"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">Телефон</div>
+                                <div class="text-xl font-semibold text-gray-800">+7 (999) 123-45-67</div>
+                            </div>
+                        </a>
+
+                        <a href="mailto:info@remontpro.ru" class="flex items-center group">
+                            <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mr-4 group-hover:bg-primary/20 transition-colors">
+                                <i data-lucide="mail" class="w-6 h-6 text-primary"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">Email</div>
+                                <div class="text-xl font-semibold text-gray-800">info@remontpro.ru</div>
+                            </div>
+                        </a>
+
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-primary"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">Офис</div>
+                                <div class="text-xl font-semibold text-gray-800">Краснодар, ул. Примерная, 1</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
+                                <i data-lucide="clock" class="w-6 h-6 text-primary"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">Время работы</div>
+                                <div class="text-xl font-semibold text-gray-800">Пн-Сб: 9:00 — 20:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-gray-50 rounded-3xl p-8 md:p-10">
+                    <h3 class="font-semibold text-2xl text-gray-800 mb-6">Оставить заявку</h3>
+                    <form class="space-y-5">
+                        <div>
+                            <input type="text" placeholder="Ваше имя"
+                                class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Телефон"
+                                class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+                        </div>
+                        <div>
+                            <textarea placeholder="Расскажите о вашем проекте" rows="4"
+                                class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary py-4 rounded-xl text-white font-semibold text-lg">
+                            Отправить заявку
+                        </button>
+                        <p class="text-sm text-gray-500 text-center">
+                            Нажимая кнопку, вы соглашаетесь с
+                            <a href="#" class="text-primary hover:underline">политикой конфиденциальности</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <a href="#" class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                            <i data-lucide="home" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl">РемонтПро</span>
+                    </a>
+                    <p class="text-white/70 max-w-sm">
+                        Профессиональный ремонт квартир под ключ в Краснодаре и области.
+                        Работаем с 2012 года.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Навигация</h4>
+                    <ul class="space-y-2 text-white/70">
+                        <li><a href="#benefits" class="hover:text-white transition-colors">Преимущества</a></li>
+                        <li><a href="#portfolio" class="hover:text-white transition-colors">Портфолио</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition-colors">Отзывы</a></li>
+                        <li><a href="#contacts" class="hover:text-white transition-colors">Контакты</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Контакты</h4>
+                    <ul class="space-y-2 text-white/70">
+                        <li>+7 (999) 123-45-67</li>
+                        <li>info@remontpro.ru</li>
+                        <li>Краснодар, ул. Примерная, 1</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-white/50 text-sm">
+                    © 2024 РемонтПро. Все права защищены.
+                </p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <i data-lucide="youtube" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/79991234567?text=Здравствуйте!%20Хочу%20заказать%20расчёт%20ремонта.%20Мой%20объект%20находится%20в%20Москве."
+       target="_blank"
+       class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-2xl whatsapp-pulse hover:bg-green-600 transition-colors">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- Quiz Modal -->
+    <div x-show="modal" x-cloak
+         class="fixed inset-0 z-50 overflow-y-auto"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0">
+
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" @click="modal = false; quizStep = 1; submitted = false"></div>
+
+        <!-- Modal Content -->
+        <div class="relative min-h-screen flex items-center justify-center p-4">
+            <div class="relative bg-white rounded-3xl max-w-lg w-full p-8 md:p-10 shadow-2xl"
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100">
+
+                <!-- Close button -->
+                <button @click="modal = false; quizStep = 1; submitted = false"
+                        class="absolute top-4 right-4 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5 text-gray-500"></i>
+                </button>
+
+                <!-- Quiz Content -->
+                <div x-show="!submitted">
+                    <!-- Progress -->
+                    <div class="flex items-center justify-between mb-8">
+                        <span class="text-sm text-gray-500">Шаг <span x-text="quizStep"></span> из 4</span>
+                        <div class="flex space-x-2">
+                            <template x-for="i in 4">
+                                <div class="w-8 h-1 rounded-full transition-colors"
+                                     :class="i <= quizStep ? 'bg-primary' : 'bg-gray-200'"></div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Type -->
+                    <div x-show="quizStep === 1">
+                        <h3 class="font-display text-2xl font-bold text-gray-800 mb-2">Что нужно сделать?</h3>
+                        <p class="text-gray-500 mb-6">Выберите тип работ</p>
+
+                        <div class="space-y-3">
+                            <button @click="quizData.type = 'Косметический ремонт'; quizStep = 2"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">Косметический ремонт</div>
+                                <div class="text-sm text-gray-500">Обои, покраска, потолки</div>
+                            </button>
+                            <button @click="quizData.type = 'Капитальный ремонт'; quizStep = 2"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">Капитальный ремонт</div>
+                                <div class="text-sm text-gray-500">Полная переделка с заменой коммуникаций</div>
+                            </button>
+                            <button @click="quizData.type = 'Ремонт под ключ'; quizStep = 2"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">Ремонт под ключ</div>
+                                <div class="text-sm text-gray-500">Всё включено: от проекта до мебели</div>
+                            </button>
+                            <button @click="quizData.type = 'Дизайн-проект'; quizStep = 2"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">Только дизайн-проект</div>
+                                <div class="text-sm text-gray-500">3D-визуализация и чертежи</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Area -->
+                    <div x-show="quizStep === 2">
+                        <h3 class="font-display text-2xl font-bold text-gray-800 mb-2">Площадь помещения?</h3>
+                        <p class="text-gray-500 mb-6">Примерная площадь в м²</p>
+
+                        <div class="space-y-3">
+                            <button @click="quizData.area = 'До 40 м²'; quizStep = 3"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">До 40 м²</div>
+                                <div class="text-sm text-gray-500">Студия или однушка</div>
+                            </button>
+                            <button @click="quizData.area = '40-70 м²'; quizStep = 3"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">40-70 м²</div>
+                                <div class="text-sm text-gray-500">Двушка или небольшая трёшка</div>
+                            </button>
+                            <button @click="quizData.area = '70-120 м²'; quizStep = 3"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">70-120 м²</div>
+                                <div class="text-sm text-gray-500">Большая квартира</div>
+                            </button>
+                            <button @click="quizData.area = 'Более 120 м²'; quizStep = 3"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">Более 120 м²</div>
+                                <div class="text-sm text-gray-500">Пентхаус или таунхаус</div>
+                            </button>
+                        </div>
+
+                        <button @click="quizStep = 1" class="mt-6 text-gray-500 hover:text-gray-700 transition-colors">
+                            ← Назад
+                        </button>
+                    </div>
+
+                    <!-- Step 3: Budget -->
+                    <div x-show="quizStep === 3">
+                        <h3 class="font-display text-2xl font-bold text-gray-800 mb-2">Планируемый бюджет?</h3>
+                        <p class="text-gray-500 mb-6">Примерная сумма на ремонт</p>
+
+                        <div class="space-y-3">
+                            <button @click="quizData.budget = 'До 500 000 ₽'; quizStep = 4"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">До 500 000 ₽</div>
+                            </button>
+                            <button @click="quizData.budget = '500 000 — 1 000 000 ₽'; quizStep = 4"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">500 000 — 1 000 000 ₽</div>
+                            </button>
+                            <button @click="quizData.budget = '1 000 000 — 2 000 000 ₽'; quizStep = 4"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">1 000 000 — 2 000 000 ₽</div>
+                            </button>
+                            <button @click="quizData.budget = 'Более 2 000 000 ₽'; quizStep = 4"
+                                    class="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+                                <div class="font-semibold text-gray-800">Более 2 000 000 ₽</div>
+                            </button>
+                        </div>
+
+                        <button @click="quizStep = 2" class="mt-6 text-gray-500 hover:text-gray-700 transition-colors">
+                            ← Назад
+                        </button>
+                    </div>
+
+                    <!-- Step 4: Phone -->
+                    <div x-show="quizStep === 4">
+                        <h3 class="font-display text-2xl font-bold text-gray-800 mb-2">Отлично! Куда отправить расчёт?</h3>
+                        <p class="text-gray-500 mb-6">Оставьте номер и мы перезвоним за 15 минут</p>
+
+                        <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                            <div class="text-sm text-gray-500 mb-1">Ваш выбор:</div>
+                            <div class="text-gray-800">
+                                <span x-text="quizData.type"></span> •
+                                <span x-text="quizData.area"></span> •
+                                <span x-text="quizData.budget"></span>
+                            </div>
+                        </div>
+
+                        <form @submit.prevent="submitted = true">
+                            <input type="tel" x-model="quizData.phone" placeholder="+7 (___) ___-__-__" required
+                                   class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all mb-4 text-lg">
+
+                            <button type="submit" class="w-full btn-primary py-4 rounded-xl text-white font-semibold text-lg">
+                                Получить расчёт
+                            </button>
+                        </form>
+
+                        <p class="text-sm text-gray-500 text-center mt-4">
+                            + Дизайн-проект в подарок при заказе до конца месяца
+                        </p>
+
+                        <button @click="quizStep = 3" class="mt-6 text-gray-500 hover:text-gray-700 transition-colors">
+                            ← Назад
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div x-show="submitted" class="text-center py-8">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="check" class="w-10 h-10 text-green-600"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-gray-800 mb-2">Заявка отправлена!</h3>
+                    <p class="text-gray-500 mb-6">Мы перезвоним вам в течение 15 минут</p>
+                    <button @click="modal = false; quizStep = 1; submitted = false"
+                            class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
+                        Отлично
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
